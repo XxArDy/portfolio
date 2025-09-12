@@ -1,0 +1,27 @@
+<div class="project-card fade-in">
+  <div class="project-header">
+    <h3 class="project-title">
+      {{ project()?.title }}
+    </h3>
+    <p class="project-description">
+      {{ project()?.description }}
+    </p>
+    <div class="project-tech">
+      @for(tech of project()?.technologies; track $index ) {
+      <span class="tech-tag">{{ tech }}</span>
+      }
+    </div>
+  </div>
+  <div class="project-links">
+    <a href="{{ project()?.gitLink }}" target="_blank" class="project-link">
+      <i class="fab fa-github"></i>
+      <span>{{ "projects.viewCode" | translate }}</span>
+    </a>
+    @if(project()?.liveLink) {
+    <a href="{{ project()?.liveLink }}" target="_blank" class="project-link">
+      <i class="fas fa-external-link-alt"></i>
+      <span>{{ "projects.viewLive" | translate }}</span>
+    </a>
+    }
+  </div>
+</div>

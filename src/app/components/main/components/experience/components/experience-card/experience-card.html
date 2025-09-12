@@ -1,0 +1,13 @@
+<div class="experience-header">
+  <h3 class="experience-title">{{ experience()?.title }}</h3>
+  <div class="experience-company">{{ experience()?.company }}</div>
+  <div class="experience-date">{{ experience()?.date }}</div>
+</div>
+<p class="experience-description">
+  {{ experience()?.description }}
+</p>
+<div class="experience-skills">
+  @for (tech of experience()?.technologies; track $index) {
+  <span class="experience-skill">{{ tech }}</span>
+  }
+</div>

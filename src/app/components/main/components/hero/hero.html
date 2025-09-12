@@ -1,0 +1,33 @@
+<section id="home" class="hero section" appFadeIn>
+  <div class="geometric-bg">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <div class="container">
+    <app-hero-title
+      [name]="'myName' | translate"
+      class="fade-in"
+    ></app-hero-title>
+
+    <app-hero-typewriter
+      [typedText]="'hero.title' | translate"
+      class="fade-in"
+    ></app-hero-typewriter>
+
+    <p class="description fade-in slide-up">
+      {{ "hero.description" | translate }}
+    </p>
+
+    <app-hero-metrics class="fade-in"></app-hero-metrics>
+
+    <app-social-links size="large" class="fade-in"></app-social-links>
+
+    <app-hero-cta
+      class="fade-in"
+      (viewProjects)="navigateToProject()"
+      (downloadCV)="downloadCV()"
+    ></app-hero-cta>
+  </div>
+</section>

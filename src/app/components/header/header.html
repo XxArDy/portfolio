@@ -1,0 +1,87 @@
+<header>
+  <nav>
+    <a href="#" class="logo">MS</a>
+
+    <ul class="nav-links" [ngClass]="{ open: isMenuOpen }">
+      <li>
+        <a (click)="scrollTo('home')">{{ "header.home" | translate }}</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('about')">{{ "header.about" | translate }}</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('skills')">{{ "header.skills" | translate }}</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('projects')">{{
+          "header.projects" | translate
+        }}</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('experience')">{{
+          "header.experience" | translate
+        }}</a>
+      </li>
+    </ul>
+
+    <div class="nav-controls">
+      <button
+        class="lang-toggle"
+        (click)="toggleLanguage()"
+        title="{{ 'header.changeLanguage' | translate }}"
+      >
+        <i class="fas fa-globe"></i>
+        <span>{{ "header." + currentLanguage | translate }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="theme-toggle"
+        (click)="toggleTheme()"
+        title="{{ 'header.changeTheme' | translate }}"
+      >
+        <i class="fas {{ currentTheme }}"></i>
+      </button>
+    </div>
+
+    <div
+      class="mobile-menu"
+      (click)="toggleMobileMenu()"
+      [ngClass]="{ open: isMenuOpen }"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <div
+    class="mobile-overlay"
+    [ngClass]="{ open: isMenuOpen }"
+    (click)="closeMobileMenu()"
+  ></div>
+
+  <div class="mobile-nav" [ngClass]="{ open: isMenuOpen }">
+    <ul class="mobile-nav-links">
+      <li>
+        <a (click)="scrollTo('home')">{{ "header.home" | translate }}</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('about')">{{ "header.about" | translate }}</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('skills')">{{ "header.skills" | translate }}</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('projects')">{{
+          "header.projects" | translate
+        }}</a>
+      </li>
+      <li>
+        <a (click)="scrollTo('experience')">{{
+          "header.experience" | translate
+        }}</a>
+      </li>
+    </ul>
+  </div>
+</header>

@@ -1,0 +1,42 @@
+{
+  "myName": "Maksym Stepaniuk",
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "english": "EN",
+    "ukrainian": "UA",
+    "changeLanguage": "Switch language",
+    "changeTheme": "Toggle theme"
+  },
+  "hero": {
+    "title": "Full Stack Developer",
+    "description": "I write precise code, design with intent, and deliver meaningful digital experiences.",
+    "viewProjects": "Explore projects",
+    "downloadCV": "Download CV",
+    "yearsExperience": "Years of experience",
+    "projectsCompleted": "Completed projects"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm a full stack developer specializing in Angular and .NET. I enjoy building scalable applications and solving complex challenges through elegant solutions. My passion lies in crafting seamless user experiences backed by solid architecture."
+  },
+  "skills": {
+    "title": "Technical Skills"
+  },
+  "projects": {
+    "title": "Projects",
+    "viewCode": "Source code",
+    "viewLive": "Live demo",
+    "moreProjects": "More projects coming soon"
+  },
+  "experience": {
+    "title": "Professional Experience"
+  },
+  "footer": {
+    "role": "Full Stack Developer — Angular & .NET",
+    "copyright": "© 2025 Maksym Stepaniuk. Built with ❤️ and modern web technologies."
+  }
+}

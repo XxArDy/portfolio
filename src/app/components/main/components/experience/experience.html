@@ -1,0 +1,12 @@
+<section id="experience" class="experience section" appFadeIn>
+  <div class="container">
+    <h2 class="section-title fade-in">{{ "experience.title" | translate }}</h2>
+    <div class="experience-timeline">
+      @for( experience of experiences; track $index ) {
+      <div class="experience-item">
+        <app-experience-card class="fade-in" [experience]="experience" />
+      </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+<div class="social-links" [ngClass]="size">
+  @for(link of links; track $index){
+  <a
+    [href]="link.url"
+    target="_blank"
+    rel="noopener"
+    [title]="link.title"
+    [class]="link.class"
+  >
+    <i [class]="link.icon"></i>
+    <span class="ripple"></span>
+  </a>
+  }
+</div>

@@ -1,0 +1,12 @@
+<section id="skills" class="skills section" appFadeIn>
+  <div class="container">
+    <h2 class="section-title fade-in">
+      {{ "skills.title" | translate }}
+    </h2>
+    <div class="skills-grid">
+      @for (skill of skills; track $index) {
+      <app-skill-card [skill]="skill" class="fade-in" />
+      }
+    </div>
+  </div>
+</section>

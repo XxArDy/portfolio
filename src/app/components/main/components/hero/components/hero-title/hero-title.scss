@@ -1,0 +1,36 @@
+@use "variables" as *;
+
+.hero-title {
+  margin-bottom: 2rem;
+
+  .name {
+    display: block;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    animation: fadeInUp 1s ease 0.4s both;
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      $primary-color,
+      $secondary-color,
+      #ff6b6b
+    );
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease-in-out infinite;
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}

@@ -1,0 +1,12 @@
+<div class="skill-category">
+  <h3>
+    <i class="{{skill()?.icon}}"></i>
+    <span>{{skill()?.name}}</span
+    >
+  </h3>
+  <div class="skill-tags">
+    @for (item of skill()?.skills; track $index) {
+      <span class="skill-tag">{{item}}</span>
+    }
+  </div>
+</div>

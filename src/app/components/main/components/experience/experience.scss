@@ -1,0 +1,93 @@
+@use "variables" as *;
+
+.experience {
+  background: $bg-secondary;
+
+  &-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: $primary-color;
+      transform: translateX(-50%);
+    }
+  }
+
+  &-item {
+    background: $bg-card;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    box-shadow: $shadow;
+    transition: all 0.3s ease;
+    border: 1px solid $border-color;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: $shadow-hover;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      background: $primary-color;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      border: 4px solid $bg-card;
+      z-index: 1;
+    }
+
+    &:nth-child(odd) {
+      margin-right: 50%;
+      padding-right: 3rem;
+
+      &::before {
+        right: -10px;
+      }
+    }
+
+    &:nth-child(even) {
+      margin-left: 50%;
+      padding-left: 3rem;
+
+      &::before {
+        left: -10px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .experience-timeline::before {
+    left: 20px;
+  }
+
+  .experience-item {
+    &:nth-child(odd),
+    &:nth-child(even) {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 3rem;
+      padding-right: 2rem;
+    }
+  }
+  .experience-item {
+    &:nth-child(odd)::before,
+    &:nth-child(even)::before {
+      left: 10px;
+      right: auto;
+    }
+  }
+}

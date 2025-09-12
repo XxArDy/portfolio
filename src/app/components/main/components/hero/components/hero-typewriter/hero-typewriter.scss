@@ -1,0 +1,32 @@
+@use "variables" as *;
+
+.subtitle-container {
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.typewriter {
+  font-size: 1.5rem;
+  color: $text-secondary;
+  font-family: "Courier New", monospace;
+
+  .cursor {
+    animation: blink 1s infinite;
+    color: $primary-color;
+  }
+}
+
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}

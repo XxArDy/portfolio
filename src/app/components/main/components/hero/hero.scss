@@ -1,0 +1,170 @@
+@use "variables" as *;
+
+.section {
+  padding-top: 0;
+}
+
+.hero {
+  padding: 4rem 0;
+  background: linear-gradient(
+    135deg,
+    rgba(74, 144, 226, 0.1) 0%,
+    rgba(80, 180, 240, 0.05) 50%,
+    $bg-primary 100%
+  );
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  .particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: $primary-color;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+
+    &:nth-child(odd) {
+      animation-delay: -2s;
+    }
+
+    &:nth-child(3n) {
+      animation-delay: -4s;
+    }
+  }
+
+  .geometric-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+
+    .shape {
+      position: absolute;
+      opacity: 0.1;
+
+      &.shape-1 {
+        top: 20%;
+        right: 10%;
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(45deg, $primary-color, $secondary-color);
+        border-radius: 50%;
+        animation: rotate 20s linear infinite;
+      }
+
+      &.shape-2 {
+        bottom: 30%;
+        left: 5%;
+        width: 150px;
+        height: 150px;
+        background: $secondary-color;
+        transform: rotate(45deg);
+        animation: pulse 4s ease-in-out infinite;
+      }
+
+      &.shape-3 {
+        top: 50%;
+        left: 80%;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(
+          135deg,
+          transparent 50%,
+          $primary-color 50%
+        );
+        animation: float 8s ease-in-out infinite reverse;
+      }
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    animation: fadeInUp 1s ease 0.8s both;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    .geometric-bg .shape {
+      &.shape-1 {
+        width: 120px;
+        height: 120px;
+      }
+
+      &.shape-2 {
+        width: 80px;
+        height: 80px;
+      }
+
+      &.shape-3 {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+}

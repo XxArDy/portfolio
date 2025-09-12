@@ -1,0 +1,14 @@
+<section id="projects" class="projects section" appFadeIn>
+  <div class="container">
+    <h2 class="section-title fade-in">
+      {{ "projects.title" | translate }}
+    </h2>
+
+    <div class="projects-grid">
+      @for( project of projects; track $index ) {
+        <app-project-card class="fade-in" [project]="project" />
+      }
+      <app-project-last-card />
+    </div>
+  </div>
+</section>

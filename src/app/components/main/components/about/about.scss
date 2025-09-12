@@ -1,0 +1,17 @@
+@use "variables" as *;
+
+.about {
+  background: $bg-secondary;
+
+  &-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &-text {
+    font-size: 1.125rem;
+    color: $text-secondary;
+    line-height: 1.8;
+  }
+}
