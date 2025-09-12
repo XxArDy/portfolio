@@ -1,0 +1,58 @@
+[
+  {
+    "icon": "fab fa-angular",
+    "name": "Frontend development",
+    "skills": [
+      "Angular",
+      "TypeScript",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Sass",
+      "Bootstrap",
+      "Tailwind CSS",
+      "RxJS",
+      "NgRx",
+      "Angular Material",
+      "Primeng"
+    ]
+  },
+  {
+    "icon": "fas fa-server",
+    "name": "Backend development",
+    "skills": [
+      ".NET",
+      "C#",
+      "ASP.NET",
+      "Entity Framework",
+      "SQL Server",
+      "RESTful APIs",
+      "SignalR",
+      "LINQ",
+      "PostgreSQL"
+    ]
+  },
+  {
+    "icon": "fas fa-database",
+    "name": "Tools",
+    "skills": [
+      "Git",
+      "GitHub",
+      "GitLab",
+      "Docker",
+      "Postman",
+      "Visual Studio",
+      "VS Code"
+    ]
+  },
+  {
+    "icon": "fa-solid fa-comment",
+    "name": "Soft skills",
+    "skills": [
+      "Problem-solving",
+      "Team collaboration",
+      "Effective communication",
+      "Time management"
+    ]
+  }
+]

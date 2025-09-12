@@ -1,0 +1,49 @@
+[
+  {
+    "title": "Student / Trainee Frontend Developer",
+    "company": "Khmelnytskyi Polytechnic Professional College",
+    "date": "2020 - 2024",
+    "description": "Started my journey into software development while studying. Learned the fundamentals of web development and began working with Angular, state management, and modern frontend practices.",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "Angular",
+      "NgRx",
+      "Angular Material",
+      "RxJS",
+      "Docker"
+    ]
+  },
+  {
+    "title": "Junior Frontend Developer",
+    "company": "Clarity AG",
+    "date": "2024 - 2025 (early)",
+    "description": "Worked as a frontend developer, building and maintaining enterprise applications. My responsibilities included implementing new features, optimizing performance, and integrating SIP-based communication solutions.",
+    "technologies": [
+      "Angular",
+      "NgRx",
+      "Angular Material",
+      "RxJS",
+      "Docker",
+      "SIP"
+    ]
+  },
+  {
+    "title": "Fullstack Developer",
+    "company": "Clarity AG",
+    "date": "March 2025 - Present",
+    "description": "Currently working as a fullstack developer, responsible for both frontend and backend development. On the frontend, I continue to build scalable Angular applications with advanced UI components, while on the backend I develop robust APIs and business logic using .NET and Entity Framework.",
+    "technologies": [
+      "Angular",
+      "NgRx",
+      "Angular Material",
+      "PrimeNG",
+      "RxJS",
+      "Docker",
+      "ASP.NET Core",
+      "Entity Framework"
+    ]
+  }
+]
