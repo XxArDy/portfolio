@@ -25,6 +25,13 @@ jobs:
         run: |
           npm run build -- --base-href="https://XxArDy.github.io/portfolio/"
 
-      - name: Deploy to GitHub Pages
+      - name: Configure Git identity
         run: |
-          npx angular-cli-ghpages --dir=dist/portfolio --no-silent
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx angular-cli-ghpages --dir=dist/portfolio/browser --no-silent
