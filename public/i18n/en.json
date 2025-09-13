@@ -13,7 +13,7 @@
   },
   "hero": {
     "title": "Full Stack Developer",
-    "description": "I write precise code, design with intent, and deliver meaningful digital experiences.",
+    "description": "I enjoy building clear, reliable solutions and creating interfaces that feel good to use.",
     "viewProjects": "Explore projects",
     "downloadCV": "Download CV",
     "yearsExperience": "Years of experience",
@@ -30,10 +30,29 @@
     "title": "Projects",
     "viewCode": "Source code",
     "viewLive": "Live demo",
-    "moreProjects": "More projects coming soon"
+    "moreProjects": "More projects coming soon",
+    "restoflowDescription": "A full-stack restaurant management system developed as a diploma project. The platform includes an admin panel for managing menus, tables, and staff, as well as dedicated interfaces for waiters and chefs to track orders and statuses in real time. The system supports light and dark themes, multi-language functionality, and is integrated with both a backend service and a mobile application. Built collaboratively as part of a team project."
   },
   "experience": {
-    "title": "Professional Experience"
+    "title": "Professional Experience",
+    "student": {
+      "title": "Student / Trainee Frontend Developer",
+      "company": "Khmelnytskyi Polytechnic Professional College",
+      "date": "2020 - 2024",
+      "description": "Started my journey into software development while studying. Learned the fundamentals of web development and began working with Angular, state management, and modern frontend practices."
+    },
+    "junior": {
+      "title": "Junior Frontend Developer",
+      "company": "Clarity AG",
+      "date": "2024 - 2025 (early)",
+      "description": "Worked as a frontend developer, building and maintaining enterprise applications. My responsibilities included implementing new features, optimizing performance, and integrating SIP-based communication solutions."
+    },
+    "fullstack": {
+      "title": "Fullstack Developer",
+      "company": "Clarity AG",
+      "date": "March 2025 - Present",
+      "description": "Currently working as a fullstack developer, responsible for both frontend and backend development. On the frontend, I continue to build scalable Angular applications with advanced UI components, while on the backend I develop robust APIs and business logic using .NET and Entity Framework."
+    }
   },
   "footer": {
     "role": "Full Stack Developer — Angular & .NET",

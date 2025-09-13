@@ -8,19 +8,14 @@ import { Location } from '@angular/common';
 export class PageRouteService {
   private router = inject(Router);
   private location = inject(Location);
-  private currentAnimationId: number | null = null;
-  private isUserScrolling = false;
-  private userScrollTimeout: any;
+  private animationId: number | null = null;
+  private isAnimating = false;
 
   scrollTo(section: string) {
     const element = document.getElementById(section);
     if (element) {
-
       this.updateUrlHash(section);
-
-      this.cancelCurrentScroll();
-
-      this.smoothScrollPolyfill(element);
+      this.smoothScrollTo(element);
     }
   }
 
@@ -28,113 +23,104 @@ export class PageRouteService {
     const hash = window.location.hash.substring(1);
     if (hash) {
       setTimeout(() => {
-        const element = document.getElementById(hash);
-        if (element) {
-          this.smoothScrollPolyfill(element);
-        }
+        this.scrollTo(hash);
       }, 100);
     }
   }
 
-  private smoothScrollPolyfill(element: HTMLElement) {
-    const targetPosition = element.offsetTop - 80;
+  private smoothScrollTo(element: HTMLElement) {
+    const targetPosition =
+      element.getBoundingClientRect().top + window.pageYOffset - 80;
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
-    const duration = 1000;
-    let start: number;
-    let lastScrollPosition = startPosition;
+    const duration = 800;
+    let startTime: number | null = null;
+
+    this.stopAnimation();
+    this.isAnimating = true;
 
     this.addScrollListeners();
 
-    const step = (timestamp: number) => {
-      if (this.isUserScrolling) {
-        this.cancelCurrentScroll();
-        return;
-      }
+    const animation = (currentTime: number) => {
+      if (!this.isAnimating) return;
 
-      if (!start) start = timestamp;
-      const progress = timestamp - start;
-      const progressPercentage = Math.min(progress / duration, 1);
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
 
-      const newPosition = startPosition + distance * this.easeInOutQuad(progressPercentage);
+      const ease = this.easeInOutCubic(progress);
+      const currentPosition = startPosition + distance * ease;
 
-      const currentScrollPosition = window.pageYOffset;
-      if (Math.abs(currentScrollPosition - lastScrollPosition) > 5 &&
-          Math.abs(currentScrollPosition - newPosition) > 10) {
-        this.cancelCurrentScroll();
-        return;
-      }
+      window.scrollTo(0, currentPosition);
 
-      window.scrollTo(0, newPosition);
-      lastScrollPosition = newPosition;
-
-      if (progress < duration) {
-        this.currentAnimationId = window.requestAnimationFrame(step);
+      if (progress < 1 && this.isAnimating) {
+        this.animationId = requestAnimationFrame(animation);
       } else {
-        this.cleanupScrollListeners();
-        this.currentAnimationId = null;
+        this.stopAnimation();
       }
     };
 
-    this.currentAnimationId = window.requestAnimationFrame(step);
+    this.animationId = requestAnimationFrame(animation);
   }
 
-  private addScrollListeners() {
-    window.addEventListener('wheel', this.handleUserScroll, { passive: true });
-    window.addEventListener('touchstart', this.handleUserScroll, { passive: true });
-    window.addEventListener('touchmove', this.handleUserScroll, { passive: true });
-    window.addEventListener('keydown', this.handleKeyScroll);
-  }
-
-  private cleanupScrollListeners() {
-    window.removeEventListener('wheel', this.handleUserScroll);
-    window.removeEventListener('touchstart', this.handleUserScroll);
-    window.removeEventListener('touchmove', this.handleUserScroll);
-    window.removeEventListener('keydown', this.handleKeyScroll);
-
-    if (this.userScrollTimeout) {
-      clearTimeout(this.userScrollTimeout);
-      this.userScrollTimeout = null;
-    }
-  }
-
-  private handleUserScroll = () => {
-    this.isUserScrolling = true;
-
-    if (this.userScrollTimeout) {
-      clearTimeout(this.userScrollTimeout);
-    }
-
-    this.userScrollTimeout = setTimeout(() => {
-      this.isUserScrolling = false;
-    }, 150);
-  };
-
-  private handleKeyScroll = (event: KeyboardEvent) => {
-    const scrollKeys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', 'Space'];
-
-    if (scrollKeys.includes(event.code)) {
-      this.handleUserScroll();
-    }
-  };
-
-  private cancelCurrentScroll() {
-    if (this.currentAnimationId) {
-      window.cancelAnimationFrame(this.currentAnimationId);
-      this.currentAnimationId = null;
-    }
-
-    this.cleanupScrollListeners();
-    this.isUserScrolling = false;
-  }
-
-  private easeInOutQuad(t: number): number {
-    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  private easeInOutCubic(t: number): number {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
   }
 
   public stopScrolling() {
-    this.cancelCurrentScroll();
+    this.stopAnimation();
   }
+
+  private stopAnimation() {
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+      this.animationId = null;
+    }
+    this.isAnimating = false;
+    this.removeScrollListeners();
+  }
+
+  private addScrollListeners() {
+    window.addEventListener('wheel', this.handleUserInteraction, {
+      passive: true,
+    });
+    window.addEventListener('touchstart', this.handleUserInteraction, {
+      passive: true,
+    });
+    window.addEventListener('touchmove', this.handleUserInteraction, {
+      passive: true,
+    });
+    window.addEventListener('keydown', this.handleKeyInteraction);
+  }
+
+  private removeScrollListeners() {
+    window.removeEventListener('wheel', this.handleUserInteraction);
+    window.removeEventListener('touchstart', this.handleUserInteraction);
+    window.removeEventListener('touchmove', this.handleUserInteraction);
+    window.removeEventListener('keydown', this.handleKeyInteraction);
+  }
+
+  private handleUserInteraction = () => {
+    if (this.isAnimating) {
+      this.stopAnimation();
+    }
+  };
+
+  private handleKeyInteraction = (event: KeyboardEvent) => {
+    const scrollKeys = [
+      'ArrowUp',
+      'ArrowDown',
+      'PageUp',
+      'PageDown',
+      'Home',
+      'End',
+      'Space',
+    ];
+
+    if (scrollKeys.includes(event.code) && this.isAnimating) {
+      this.stopAnimation();
+    }
+  };
 
   private updateUrlHash(section: string) {
     const url = this.router.createUrlTree([], { fragment: section }).toString();
