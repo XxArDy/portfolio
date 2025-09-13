@@ -1,9 +1,9 @@
 [
   {
-    "title": "Student / Trainee Frontend Developer",
-    "company": "Khmelnytskyi Polytechnic Professional College",
-    "date": "2020 - 2024",
-    "description": "Started my journey into software development while studying. Learned the fundamentals of web development and began working with Angular, state management, and modern frontend practices.",
+    "title": "experience.student.title",
+    "company": "experience.student.company",
+    "date": "experience.student.date",
+    "description": "experience.student.description",
     "technologies": [
       "HTML",
       "CSS",
@@ -17,10 +17,10 @@
     ]
   },
   {
-    "title": "Junior Frontend Developer",
-    "company": "Clarity AG",
-    "date": "2024 - 2025 (early)",
-    "description": "Worked as a frontend developer, building and maintaining enterprise applications. My responsibilities included implementing new features, optimizing performance, and integrating SIP-based communication solutions.",
+    "title": "experience.junior.title",
+    "company": "experience.junior.company",
+    "date": "experience.junior.date",
+    "description": "experience.junior.description",
     "technologies": [
       "Angular",
       "NgRx",
@@ -31,10 +31,10 @@
     ]
   },
   {
-    "title": "Fullstack Developer",
-    "company": "Clarity AG",
-    "date": "March 2025 - Present",
-    "description": "Currently working as a fullstack developer, responsible for both frontend and backend development. On the frontend, I continue to build scalable Angular applications with advanced UI components, while on the backend I develop robust APIs and business logic using .NET and Entity Framework.",
+    "title": "experience.fullstack.title",
+    "company": "experience.fullstack.company",
+    "date": "experience.fullstack.date",
+    "description": "experience.fullstack.description",
     "technologies": [
       "Angular",
       "NgRx",
