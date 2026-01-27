@@ -17,24 +17,10 @@
     ]
   },
   {
-    "title": "experience.junior.title",
-    "company": "experience.junior.company",
-    "date": "experience.junior.date",
-    "description": "experience.junior.description",
-    "technologies": [
-      "Angular",
-      "NgRx",
-      "Angular Material",
-      "RxJS",
-      "Docker",
-      "SIP"
-    ]
-  },
-  {
-    "title": "experience.fullstack.title",
-    "company": "experience.fullstack.company",
-    "date": "experience.fullstack.date",
-    "description": "experience.fullstack.description",
+    "title": "experience.juniorFullstack.title",
+    "company": "experience.juniorFullstack.company",
+    "date": "experience.juniorFullstack.date",
+    "description": "experience.juniorFullstack.description",
     "technologies": [
       "Angular",
       "NgRx",
@@ -43,7 +29,25 @@
       "RxJS",
       "Docker",
       "ASP.NET Core",
-      "Entity Framework"
+      "Entity Framework",
+      "SIP"
+    ]
+  },
+  {
+    "title": "experience.fullstackDevops.title",
+    "company": "experience.fullstackDevops.company",
+    "date": "experience.fullstackDevops.date",
+    "description": "experience.fullstackDevops.description",
+    "technologies": [
+      "Angular",
+      "NgRx",
+      "Angular Material",
+      "RxJS",
+      "ASP.NET Core",
+      "Entity Framework",
+      "Docker",
+      "AWS",
+      "CI/CD"
     ]
   }
 ]

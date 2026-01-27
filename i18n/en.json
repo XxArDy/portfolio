@@ -41,17 +41,17 @@
       "date": "2020 - 2024",
       "description": "Started my journey into software development while studying. Learned the fundamentals of web development and began working with Angular, state management, and modern frontend practices."
     },
-    "junior": {
-      "title": "Junior Frontend Developer",
+    "juniorFullstack": {
+      "title": "Junior Fullstack Developer",
       "company": "Clarity AG",
-      "date": "2024 - 2025 (early)",
-      "description": "Worked as a frontend developer, building and maintaining enterprise applications. My responsibilities included implementing new features, optimizing performance, and integrating SIP-based communication solutions."
+      "date": "2024 - November 2025",
+      "description": "Worked as a junior fullstack developer, building and maintaining enterprise applications. Started as a frontend developer implementing new features and optimizing performance, then transitioned to fullstack development. Responsibilities included developing scalable Angular applications with advanced UI components, creating robust APIs and business logic using .NET and Entity Framework, and integrating SIP-based communication solutions."
     },
-    "fullstack": {
+    "fullstackDevops": {
       "title": "Fullstack Developer",
-      "company": "Clarity AG",
-      "date": "March 2025 - Present",
-      "description": "Currently working as a fullstack developer, responsible for both frontend and backend development. On the frontend, I continue to build scalable Angular applications with advanced UI components, while on the backend I develop robust APIs and business logic using .NET and Entity Framework."
+      "company": "DevelopsToday",
+      "date": "November 2025 - Present",
+      "description": "Currently working as a fullstack developer with DevOps responsibilities. Developing scalable web applications using Angular and .NET, while also managing infrastructure, CI/CD pipelines, cloud deployments, and containerization. Working on both frontend and backend development, ensuring high performance and reliability of applications."
     }
   },
   "footer": {
