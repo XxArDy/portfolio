@@ -2,8 +2,18 @@
 
 footer {
   background: $bg-card;
-  border-top: 1px solid $border-color;
   padding: 2rem 0 1rem;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: $gradient-primary;
+  }
 }
 
 .footer-content {
@@ -16,7 +26,10 @@ footer {
 }
 
 .footer-brand h3 {
-  color: $primary-color;
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -35,10 +48,14 @@ footer {
 
 .footer-bottom {
   text-align: center;
-  border-top: 1px solid $border-color;
+  border-top: 1px solid rgba(139, 92, 246, 0.1);
   padding-top: 1rem;
   font-size: 0.875rem;
   color: $text-secondary;
+  
+  [data-theme="dark"] & {
+    border-top: 1px solid rgba(167, 139, 250, 0.2);
+  }
 }
 
 @media (max-width: 768px) {

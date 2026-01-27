@@ -3,16 +3,17 @@
 .project {
   &-card {
     background: $bg-card;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     overflow: hidden;
     box-shadow: $shadow;
-    transition: all 0.3s ease;
-    border: 4px dashed $border-color;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px dashed rgba(139, 92, 246, 0.3);
     height: 100%;
 
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: $shadow-hover;
+      transform: translateY(-8px);
+      box-shadow: $shadow-colored;
+      border-color: rgba(139, 92, 246, 0.5);
     }
   }
 
@@ -26,14 +27,20 @@
 
     i {
       font-size: 4rem;
-      color: $text-secondary;
+      background: $gradient-primary;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 1rem;
     }
 
     h3 {
       font-size: 1.5rem;
       font-weight: 700;
-      color: $text-primary;
+      background: $gradient-primary;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
   }
 }

@@ -66,7 +66,7 @@
   .btn-background {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle, $primary-color, $secondary-color);
+    background: $gradient-primary;
     border-radius: inherit;
     transform: scale(0);
     transition: transform 0.8s ease;
@@ -75,9 +75,28 @@
 
   &:hover {
     color: white;
+    border-color: transparent;
+    box-shadow: $shadow-colored;
 
     .btn-background {
       transform: scale(2);
+    }
+  }
+  
+  [data-theme="dark"] & {
+    border-color: $primary-color;
+    
+    .btn-background {
+      background: $primary-color;
+    }
+    
+    &:hover {
+      background: $primary-color;
+      box-shadow: 0 8px 20px rgba(167, 139, 250, 0.4);
+      
+      .btn-background {
+        background: $primary-color;
+      }
     }
   }
 }

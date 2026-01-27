@@ -6,18 +6,42 @@
 
 .hero {
   padding: 4rem 0;
-  background: linear-gradient(
-    135deg,
-    rgba(74, 144, 226, 0.1) 0%,
-    rgba(80, 180, 240, 0.05) 50%,
-    $bg-primary 100%
-  );
+  background: $gradient-soft;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
   text-align: center;
   min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $bg-primary;
+    opacity: 0.85;
+    z-index: 0;
+  }
+  
+  [data-theme="dark"] & {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(167, 139, 250, 0.25) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(244, 114, 182, 0.25) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(167, 139, 250, 0.2) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(244, 114, 182, 0.2) 0px, transparent 50%);
+    
+    &::before {
+      opacity: 0.9;
+    }
+  }
 
   .particles-container {
     position: absolute;
@@ -29,13 +53,18 @@
     z-index: 1;
   }
 
-  .particle {
+    .particle {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background: $primary-color;
+    width: 3px;
+    height: 3px;
+    background: $gradient-primary;
     border-radius: 50%;
     animation: float 6s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+    
+    [data-theme="dark"] & {
+      box-shadow: 0 0 15px rgba(167, 139, 250, 0.6);
+    }
 
     &:nth-child(odd) {
       animation-delay: -2s;
@@ -57,14 +86,15 @@
 
     .shape {
       position: absolute;
-      opacity: 0.1;
+      opacity: 0.15;
+      filter: blur(40px);
 
       &.shape-1 {
         top: 20%;
         right: 10%;
-        width: 200px;
-        height: 200px;
-        background: linear-gradient(45deg, $primary-color, $secondary-color);
+        width: 300px;
+        height: 300px;
+        background: $gradient-primary;
         border-radius: 50%;
         animation: rotate 20s linear infinite;
       }
@@ -72,23 +102,25 @@
       &.shape-2 {
         bottom: 30%;
         left: 5%;
-        width: 150px;
-        height: 150px;
-        background: $secondary-color;
+        width: 250px;
+        height: 250px;
+        background: linear-gradient(135deg, $secondary-color, $accent-color);
         transform: rotate(45deg);
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
         animation: pulse 4s ease-in-out infinite;
       }
 
       &.shape-3 {
         top: 50%;
         left: 80%;
-        width: 100px;
-        height: 100px;
+        width: 200px;
+        height: 200px;
         background: linear-gradient(
           135deg,
-          transparent 50%,
-          $primary-color 50%
+          $accent-color 0%,
+          $primary-color 100%
         );
+        border-radius: 50%;
         animation: float 8s ease-in-out infinite reverse;
       }
     }

@@ -14,38 +14,49 @@
       left: 50%;
       top: 0;
       bottom: 0;
-      width: 2px;
-      background: $primary-color;
+      width: 3px;
+      background: $gradient-primary;
       transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+      
+      [data-theme="dark"] & {
+        box-shadow: 0 0 15px rgba(167, 139, 250, 0.6);
+      }
     }
   }
 
   &-item {
     background: $bg-card;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     padding: 2rem;
     margin-bottom: 2rem;
     position: relative;
     box-shadow: $shadow;
-    transition: all 0.3s ease;
-    border: 1px solid $border-color;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(139, 92, 246, 0.1);
 
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: $shadow-hover;
+      transform: translateY(-8px);
+      box-shadow: $shadow-colored;
+      border-color: rgba(139, 92, 246, 0.3);
     }
 
     &::before {
       content: "";
       position: absolute;
       top: 50%;
-      width: 20px;
-      height: 20px;
-      background: $primary-color;
+      width: 24px;
+      height: 24px;
+      background: $gradient-primary;
       border-radius: 50%;
       transform: translateY(-50%);
       border: 4px solid $bg-card;
       z-index: 1;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+      
+      [data-theme="dark"] & {
+        box-shadow: 0 0 20px rgba(167, 139, 250, 0.7);
+      }
     }
 
     &:nth-child(odd) {

@@ -3,12 +3,17 @@
 .experience {
   &-header {
     margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(139, 92, 246, 0.1);
   }
 
   &-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: $primary-color;
+    background: $gradient-primary;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 0.5rem;
   }
 
@@ -38,11 +43,27 @@
   }
 
   &-skill {
-    background: $primary-color;
+    background: $gradient-primary;
     color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 1.5rem;
     font-size: 0.75rem;
     font-weight: 500;
+    box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
+    }
+    
+    [data-theme="dark"] & {
+      background: $primary-color;
+      box-shadow: 0 2px 4px rgba(167, 139, 250, 0.4);
+      
+      &:hover {
+        box-shadow: 0 4px 8px rgba(167, 139, 250, 0.5);
+      }
+    }
   }
 }
