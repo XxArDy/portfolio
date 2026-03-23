@@ -1,31 +1,65 @@
 @use "variables" as *;
 
 .hero-title {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
+  animation: heroNameIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
 
-  .name {
-    display: block;
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 700;
-    animation: fadeInUp 1s ease 0.4s both;
-  }
+/* Small label above the name */
+.hero-label {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-1);
+  margin-bottom: 0.6rem;
+  opacity: 0.85;
+}
 
-  .gradient-text {
-    background: $gradient-primary;
-    background-size: 200% 200%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientShift 3s ease-in-out infinite;
+/* Main name */
+.name {
+  font-family: 'Geologica', 'Manrope', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--text-primary);
+}
+
+/* Scramble text — monospace during scramble, switches to display font when resolved */
+.scramble-text {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-1);
+  transition: font-family 0.1s, color 0.5s ease;
+
+  &.resolved {
+    font-family: 'Geologica', 'Manrope', sans-serif;
+    color: var(--text-primary);
   }
 }
 
-@keyframes gradientShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
+@keyframes heroNameIn {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+    filter: blur(6px);
   }
-  50% {
-    background-position: 100% 50%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .name {
+    font-size: clamp(2.4rem, 10vw, 3.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .name {
+    font-size: clamp(2rem, 11vw, 2.8rem);
   }
 }

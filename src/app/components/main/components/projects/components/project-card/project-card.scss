@@ -1,163 +1,132 @@
 @use "variables" as *;
 
-.project {
-  &-card {
-    background: $bg-card;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    box-shadow: $shadow;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(139, 92, 246, 0.1);
-    position: relative;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: $gradient-primary;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+.project-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
 
-    &:hover {
-      transform: translateY(-8px);
-      box-shadow: $shadow-colored;
-      border-color: rgba(139, 92, 246, 0.3);
-      
-      &::before {
-        opacity: 1;
-      }
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-warm);
+    border-radius: 16px 16px 0 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  &-header {
-    padding: 2rem 2rem 1rem;
-  }
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-accent);
 
-  &-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    background: $gradient-primary;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    transition: all 0.3s ease;
-  }
+    &::before { transform: scaleX(1); }
 
-  &-description {
-    color: $text-secondary;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-
-  &-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  &-links {
-    display: flex;
-    gap: 1rem;
-    padding: 0 2rem 2rem;
-  }
-
-  &-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: rgba(139, 92, 246, 0.1);
-    color: $text-primary;
-    text-decoration: none;
-    border-radius: 0.75rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: $gradient-primary;
-      transition: left 0.3s ease;
-      z-index: -1;
-    }
-
-    &:hover {
-      color: white;
-      border-color: transparent;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
-      
-      &::before {
-        left: 0;
-      }
-    }
-    
-    [data-theme="dark"] & {
-      background: rgba(167, 139, 250, 0.15);
-      border: 1px solid rgba(167, 139, 250, 0.3);
-      
-      &::before {
-        background: $primary-color;
-      }
-      
-      &:hover {
-        background: $primary-color;
-        box-shadow: 0 4px 12px rgba(167, 139, 250, 0.5);
-      }
+    .project-title {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
   }
 }
 
-[data-theme="dark"] .project-card {
-  background: #1e293b;
-  border-color: rgba(167, 139, 250, 0.2);
-  
-  &:hover {
-    background: #1e293b;
-    border-color: rgba(167, 139, 250, 0.4);
-  }
+.project-header {
+  padding: 1.75rem 1.75rem 1rem;
+  flex: 1;
+}
+
+.project-title {
+  font-family: 'Geologica', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.7rem;
+  letter-spacing: -0.02em;
+  transition: color 0.2s, background 0.2s;
+}
+
+.project-description {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .tech-tag {
-  background: $gradient-primary;
-  color: white;
-  padding: 0.35rem 0.85rem;
-  border-radius: 1.5rem;
-  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.7rem;
   font-weight: 500;
-  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
-  transition: all 0.3s ease;
-  
+  color: var(--accent-1);
+  background: color-mix(in srgb, var(--accent-1) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-1) 18%, transparent);
+  padding: 0.28rem 0.62rem;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+
   &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4);
-  }
-  
-  [data-theme="dark"] & {
-    background: $primary-color;
-    box-shadow: 0 2px 4px rgba(167, 139, 250, 0.4);
-    
-    &:hover {
-      box-shadow: 0 4px 8px rgba(167, 139, 250, 0.5);
-    }
+    background: var(--accent-1);
+    color: white;
+    border-color: transparent;
   }
 }
 
-@media (max-width: 768px) {
-  .project-links {
-    flex-direction: column;
+.project-links {
+  display: flex;
+  gap: 0.65rem;
+  padding: 1.1rem 1.75rem 1.6rem;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  transition: all 0.22s ease;
+  min-height: 36px;
+
+  i { font-size: 0.85rem; }
+
+  &:hover {
+    color: var(--accent-1);
+    border-color: var(--border-accent);
+    background: color-mix(in srgb, var(--accent-1) 6%, transparent);
+    transform: translateY(-1px);
   }
+}
+
+@media (max-width: 480px) {
+  .project-header { padding: 1.5rem 1.5rem 0.75rem; }
+  .project-links  { padding: 1rem 1.5rem 1.5rem; }
 }

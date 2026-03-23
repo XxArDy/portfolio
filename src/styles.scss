@@ -1,45 +1,59 @@
 @use "variables" as *;
 
-* {
+/* ============================================
+   BASE RESET
+   ============================================ */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ============================================
+   GRAIN TEXTURE
+   ============================================ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.05;
+}
+
+/* ============================================
+   BODY
+   ============================================ */
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6;
-  color: $text-primary;
-  background-color: $bg-primary;
-  transition: all 0.3s ease;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  transition: background-color 0.35s ease, color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Geologica', 'Manrope', sans-serif;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
 .section {
-  padding: 4rem 0;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
-  background: $gradient-primary;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: $gradient-primary;
-    border-radius: 2px;
-  }
+  padding: 6rem 0;
 }
 
 .container {
@@ -48,35 +62,111 @@ body {
   padding: 0 2rem;
 }
 
+/* ============================================
+   SECTION TITLE
+   ============================================ */
+.section-title {
+  font-family: 'Geologica', sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 900;
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+  position: relative;
+  display: inline-block;
+  letter-spacing: -0.03em;
+
+  /* Accent underline — animates in on .visible */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40%;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &.visible::after {
+    transform: scaleX(1);
+  }
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
 .fade-in {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
+  transform: translateY(32px) scale(0.98);
+  filter: blur(3px);
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.6s ease;
 }
 
 .fade-in.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Staggered children */
+.fade-in:nth-child(1)  { transition-delay: 0.05s; }
+.fade-in:nth-child(2)  { transition-delay: 0.12s; }
+.fade-in:nth-child(3)  { transition-delay: 0.19s; }
+.fade-in:nth-child(4)  { transition-delay: 0.26s; }
+.fade-in:nth-child(5)  { transition-delay: 0.33s; }
+.fade-in:nth-child(6)  { transition-delay: 0.40s; }
+.fade-in:nth-child(7)  { transition-delay: 0.47s; }
+.fade-in:nth-child(8)  { transition-delay: 0.54s; }
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb {
+  background: var(--accent-1);
+  border-radius: 3px;
+  opacity: 0.5;
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+::selection {
+  background: color-mix(in srgb, var(--accent-1) 25%, transparent);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   SMOOTH SCROLL
+   ============================================ */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .section { padding: 5rem 0; }
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 1rem;
+  .container { padding: 0 1.25rem; }
+  .section { padding: 4rem 0; }
+  .section-title {
+    font-size: clamp(1.65rem, 6vw, 2.1rem);
+    margin-bottom: 2.25rem;
   }
 }
 
 @media (max-width: 480px) {
-  .section {
-    padding: 3rem 0;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+  .container { padding: 0 1rem; }
+  .section { padding: 3rem 0; }
 }

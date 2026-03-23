@@ -5,29 +5,39 @@
     <div class="shape shape-3"></div>
   </div>
 
-  <div class="container">
-    <app-hero-title
-      [name]="'myName' | translate"
-      class="fade-in"
-    ></app-hero-title>
+  <div class="container hero-layout">
 
-    <app-hero-typewriter
-      [typedText]="'hero.title' | translate"
-      class="fade-in"
-    ></app-hero-typewriter>
+    <!-- Left: text content -->
+    <div class="hero-text">
+      <app-hero-title
+        [name]="'myName' | translate"
+        class="fade-in"
+      ></app-hero-title>
 
-    <p class="description fade-in slide-up">
-      {{ "hero.description" | translate }}
-    </p>
+      <app-hero-typewriter
+        [typedText]="'hero.title' | translate"
+        class="fade-in"
+      ></app-hero-typewriter>
 
-    <app-hero-metrics class="fade-in"></app-hero-metrics>
+      <p class="description fade-in">
+        {{ "hero.description" | translate }}
+      </p>
 
-    <app-social-links size="large" class="fade-in"></app-social-links>
+      <app-hero-metrics class="fade-in"></app-hero-metrics>
 
-    <app-hero-cta
-      class="fade-in"
-      (viewProjects)="navigateToProject()"
-      (downloadCV)="downloadCV()"
-    ></app-hero-cta>
+      <app-social-links size="large" class="fade-in"></app-social-links>
+
+      <app-hero-cta
+        class="fade-in"
+        (viewProjects)="navigateToProject()"
+        (downloadCV)="downloadCV()"
+      ></app-hero-cta>
+    </div>
+
+    <!-- Right: 3D canvas sphere -->
+    <div class="hero-canvas-wrap" aria-hidden="true">
+      <canvas #heroCanvas class="hero-canvas"></canvas>
+    </div>
+
   </div>
 </section>

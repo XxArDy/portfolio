@@ -1,104 +1,76 @@
 @use "variables" as *;
 
 .experience {
-  background: $bg-secondary;
+  background: var(--bg-secondary);
+  position: relative;
+
+  .section-title {
+    text-align: left;
+  }
 
   &-timeline {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 760px;
     position: relative;
 
+    /* Vertical guide line */
     &::before {
-      content: "";
+      content: '';
       position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: $gradient-primary;
-      transform: translateX(-50%);
-      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-      
-      [data-theme="dark"] & {
-        box-shadow: 0 0 15px rgba(167, 139, 250, 0.6);
-      }
+      left: 11px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-1), var(--accent-2) 60%, transparent);
+      opacity: 0.4;
+      border-radius: 2px;
     }
   }
 
   &-item {
-    background: $bg-card;
-    border-radius: 1.5rem;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    padding-left: 3rem;
+    margin-bottom: 1.75rem;
     position: relative;
-    box-shadow: $shadow;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(139, 92, 246, 0.1);
 
-    &:hover {
-      transform: translateY(-8px);
-      box-shadow: $shadow-colored;
-      border-color: rgba(139, 92, 246, 0.3);
-    }
-
+    /* Timeline dot */
     &::before {
-      content: "";
+      content: '';
       position: absolute;
-      top: 50%;
-      width: 24px;
-      height: 24px;
-      background: $gradient-primary;
+      left: 4px;
+      top: 1.6rem;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
-      transform: translateY(-50%);
-      border: 4px solid $bg-card;
+      background: var(--bg-primary);
+      border: 2.5px solid var(--accent-1);
+      transition: border-color 0.3s ease, background 0.3s ease;
       z-index: 1;
-      box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
-      
-      [data-theme="dark"] & {
-        box-shadow: 0 0 20px rgba(167, 139, 250, 0.7);
-      }
     }
 
-    &:nth-child(odd) {
-      margin-right: 50%;
-      padding-right: 3rem;
-
-      &::before {
-        right: -10px;
-      }
+    &:hover::before {
+      background: var(--accent-1);
     }
 
-    &:nth-child(even) {
-      margin-left: 50%;
-      padding-left: 3rem;
-
-      &::before {
-        left: -10px;
-      }
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
 
-
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  .experience-timeline::before {
-    left: 20px;
-  }
+  .experience {
+    &-timeline {
+      max-width: 100%;
+    }
 
-  .experience-item {
-    &:nth-child(odd),
-    &:nth-child(even) {
-      margin-left: 0;
-      margin-right: 0;
-      padding-left: 3rem;
-      padding-right: 2rem;
+    &-item {
+      padding-left: 2.5rem;
     }
   }
+}
+
+@media (max-width: 480px) {
   .experience-item {
-    &:nth-child(odd)::before,
-    &:nth-child(even)::before {
-      left: 10px;
-      right: auto;
-    }
+    padding-left: 2.25rem;
   }
 }

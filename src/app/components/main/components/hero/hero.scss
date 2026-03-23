@@ -1,202 +1,167 @@
 @use "variables" as *;
 
-.section {
-  padding-top: 0;
-}
-
 .hero {
-  padding: 4rem 0;
-  background: $gradient-soft;
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.1) 0px, transparent 50%);
-  text-align: center;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  padding: 7rem 0 5rem;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $bg-primary;
-    opacity: 0.85;
-    z-index: 0;
-  }
-  
-  [data-theme="dark"] & {
-    background-image: 
-      radial-gradient(at 0% 0%, rgba(167, 139, 250, 0.25) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(244, 114, 182, 0.25) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(167, 139, 250, 0.2) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(244, 114, 182, 0.2) 0px, transparent 50%);
-    
-    &::before {
-      opacity: 0.9;
-    }
-  }
 
-  .particles-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
+  background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse 70% 60% at -5% 50%, color-mix(in srgb, var(--accent-1) 14%, transparent) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 105% 20%, color-mix(in srgb, var(--accent-2) 10%, transparent) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 60% 100%, color-mix(in srgb, var(--accent-warm) 6%, transparent) 0%, transparent 60%);
+}
 
-    .particle {
+/* ── Background orbs ── */
+.geometric-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  .shape {
     position: absolute;
-    width: 3px;
-    height: 3px;
-    background: $gradient-primary;
     border-radius: 50%;
-    animation: float 6s ease-in-out infinite;
-    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-    
-    [data-theme="dark"] & {
-      box-shadow: 0 0 15px rgba(167, 139, 250, 0.6);
+    will-change: transform;
+
+    &.shape-1 {
+      width: 500px;
+      height: 500px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, color-mix(in srgb, var(--accent-1) 12%, transparent), transparent 70%);
+      filter: blur(60px);
+      animation: orbFloat 14s ease-in-out infinite;
     }
 
-    &:nth-child(odd) {
-      animation-delay: -2s;
+    &.shape-2 {
+      width: 350px;
+      height: 350px;
+      bottom: 0;
+      left: -80px;
+      background: radial-gradient(circle, color-mix(in srgb, var(--accent-2) 10%, transparent), transparent 70%);
+      filter: blur(55px);
+      animation: orbFloat 10s ease-in-out infinite reverse;
     }
 
-    &:nth-child(3n) {
-      animation-delay: -4s;
-    }
-  }
-
-  .geometric-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-
-    .shape {
-      position: absolute;
-      opacity: 0.15;
+    &.shape-3 {
+      width: 200px;
+      height: 200px;
+      top: 30%;
+      left: 40%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--accent-warm) 8%, transparent), transparent 70%);
       filter: blur(40px);
-
-      &.shape-1 {
-        top: 20%;
-        right: 10%;
-        width: 300px;
-        height: 300px;
-        background: $gradient-primary;
-        border-radius: 50%;
-        animation: rotate 20s linear infinite;
-      }
-
-      &.shape-2 {
-        bottom: 30%;
-        left: 5%;
-        width: 250px;
-        height: 250px;
-        background: linear-gradient(135deg, $secondary-color, $accent-color);
-        transform: rotate(45deg);
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-        animation: pulse 4s ease-in-out infinite;
-      }
-
-      &.shape-3 {
-        top: 50%;
-        left: 80%;
-        width: 200px;
-        height: 200px;
-        background: linear-gradient(
-          135deg,
-          $accent-color 0%,
-          $primary-color 100%
-        );
-        border-radius: 50%;
-        animation: float 8s ease-in-out infinite reverse;
-      }
+      animation: orbFloat 18s ease-in-out infinite;
+      animation-delay: -6s;
     }
   }
-
-  .container {
-    position: relative;
-    z-index: 2;
-  }
-
-  .description {
-    font-size: 1.125rem;
-    color: $text-secondary;
-    max-width: 600px;
-    margin: 0 auto 3rem;
-    animation: fadeInUp 1s ease 0.8s both;
-  }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ── Split layout ── */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  align-items: center;
+  gap: 5rem;
+  position: relative;
+  z-index: 2;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ── Canvas sphere ── */
+.hero-canvas-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 480px;
+  justify-self: center;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
+.hero-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Description ── */
+.description {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  color: var(--text-secondary);
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+}
+
+/* ── Keyframes ── */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  40%       { transform: translateY(-30px) scale(1.04); }
+  70%       { transform: translateY(14px) scale(0.97); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero-layout {
+    grid-template-columns: 1fr 0.8fr;
+    gap: 3rem;
   }
 }
 
 @media (max-width: 768px) {
   .hero {
-    .geometric-bg .shape {
-      &.shape-1 {
-        width: 120px;
-        height: 120px;
-      }
+    padding: 6rem 0 4rem;
+  }
 
-      &.shape-2 {
-        width: 80px;
-        height: 80px;
-      }
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
 
-      &.shape-3 {
-        width: 60px;
-        height: 60px;
-      }
-    }
+  .hero-canvas-wrap {
+    max-width: 280px;
+    justify-self: center;
+    aspect-ratio: 1;
+  }
+
+  .hero-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .description {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .geometric-bg .shape {
+    &.shape-1 { width: 220px; height: 220px; }
+    &.shape-2 { width: 160px; height: 160px; }
+    &.shape-3 { width: 100px; height: 100px; }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 5.5rem 0 3rem;
+  }
+
+  .hero-canvas-wrap {
+    max-width: 220px;
   }
 }

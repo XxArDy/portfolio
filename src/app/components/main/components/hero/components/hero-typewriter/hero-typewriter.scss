@@ -1,35 +1,42 @@
 @use "variables" as *;
 
 .subtitle-container {
-  min-height: 60px;
+  min-height: 44px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
 }
 
 .typewriter {
-  font-size: 1.5rem;
-  color: $text-secondary;
-  font-family: "Courier New", monospace;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
 
   .cursor {
-    animation: blink 1s infinite;
-    background: $gradient-primary;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    animation: blink 1.1s step-end infinite;
+    color: var(--accent-1);
+    font-weight: 300;
+    margin-left: 1px;
   }
 }
 
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 @keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Mobile: center */
+@media (max-width: 768px) {
+  .subtitle-container {
+    justify-content: center;
   }
 }

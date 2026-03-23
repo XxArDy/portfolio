@@ -1,16 +1,21 @@
 @use "variables" as *;
 
 .skill-category {
-  background: $bg-card;
-  padding: 2rem;
-  border-radius: 1.5rem;
-  box-shadow: $shadow;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 1.75rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  gap: 1.25rem;
   position: relative;
   overflow: hidden;
 
@@ -21,100 +26,71 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: $gradient-primary;
+    background: var(--gradient-primary);
+    border-radius: 16px 16px 0 0;
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: $shadow-colored;
-    border-color: rgba(139, 92, 246, 0.3);
-    
-    &::before {
-      transform: scaleX(1);
-    }
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-accent);
+
+    &::before { transform: scaleX(1); }
   }
 
   h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    background: $gradient-primary;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: 'Geologica', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-primary);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    letter-spacing: -0.02em;
+
+    i {
+      font-size: 1.05rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      flex-shrink: 0;
+    }
   }
 
   .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
 }
 
+/* ── Skill Tag ── */
 .skill-tag {
-  background: rgba(139, 92, 246, 0.1);
-  color: $text-primary;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  font-size: 0.875rem;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.72rem;
   font-weight: 500;
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  transition: all 0.3s ease;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--accent-1) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-1) 16%, transparent);
+  padding: 0.32rem 0.7rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  cursor: default;
   white-space: nowrap;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: $gradient-primary;
-    transition: left 0.3s ease;
-    z-index: -1;
-  }
 
   &:hover {
     color: white;
+    background: var(--accent-1);
     border-color: transparent;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
-    
-    &::before {
-      left: 0;
-    }
-  }
-  
-  [data-theme="dark"] & {
-    background: rgba(167, 139, 250, 0.15);
-    border: 1px solid rgba(167, 139, 250, 0.3);
-    
-    &::before {
-      background: $primary-color;
-    }
-    
-    &:hover {
-      background: $primary-color;
-      box-shadow: 0 4px 8px rgba(167, 139, 250, 0.4);
-    }
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px color-mix(in srgb, var(--accent-1) 35%, transparent);
   }
 }
 
-[data-theme="dark"] .skill-category {
-  background: #1e293b;
-  border-color: rgba(167, 139, 250, 0.2);
-  
-  &:hover {
-    background: #1e293b;
-    border-color: rgba(167, 139, 250, 0.4);
-  }
+@media (max-width: 480px) {
+  .skill-category { padding: 1.5rem; }
 }
